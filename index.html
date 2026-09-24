@@ -88,6 +88,8 @@
 
   .footer-note { margin-top: 30px; padding-top: 14px; border-top: 1px dashed #ccc; }
   #pdfBtn { background: #2e7d32; color: #fff; font-size: 15px; padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; }
+  .lock-notice { background: #FFF3E0; border: 1px solid #E65100; color: #6d3400; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; font-size: 14px; }
+  .answer-box:disabled { background: #f0f0f0; color: #999; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -96,7 +98,7 @@
 <div class="subtitle">Exodusters &amp; Chinese Railroad Workers — Unit 3, Day 4</div>
 
 <div class="top-note">
-  <strong>Enter your Student ID below and hit Load first</strong> — your work autosaves every few seconds after that, and you can also load it again later on any device.<br><br>
+  <strong>Enter your Student ID and click Load first</strong> — the writing boxes stay locked until you do, so your work can't be accidentally overwritten. After that, your work saves to this browser instantly and syncs to the server in the background.<br><br>
   Hover over any <span class="term" data-def="Example: this is what a glossed word looks like — hover any underlined word for its definition.">underlined word</span>
   for a definition. On images, hover the numbered gold circles for analysis questions (answered below) and the blue "i" circles for quick facts.
 </div>
@@ -107,6 +109,7 @@
   <button id="saveBtn" onclick="saveProgress()" disabled>Save Progress</button>
   <span id="saveStatus" class="save-status"></span>
 </div>
+<div id="lockNotice" class="lock-notice">🔒 Boxes are locked. Enter your Student ID and click "Load my previous work" to unlock — even if you have nothing saved yet, this confirms your ID and starts your work correctly.</div>
 
 <label>Completion</label>
 <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
@@ -139,7 +142,7 @@
           <div>An <span class="term" data-def="A Black Southerner who migrated to Kansas in 1879–80, framing the move as an escape from oppression — like the biblical Exodus.">Exoduster</span> was someone who ___, unlike a regular migrant who ___.</div>
           <div>Based on the broadside, <span class="term" data-def="A Black Southerner who migrated to Kansas in 1879–80, framing the move as an escape from oppression — like the biblical Exodus.">Exoduster</span> means ___ because Singleton wanted people to ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc1_1" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc1_1" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -151,7 +154,7 @@
           <div>Singleton might have left this out because ___.</div>
           <div>I think the broadside focuses on ___ instead of ___ because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc1_2" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc1_2" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -163,7 +166,7 @@
           <div>Singleton included this warning because ___.</div>
           <div>This warning shows that Singleton wanted people to ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc1_3" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc1_3" data-doc="doc1" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -178,7 +181,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc1" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc1" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -212,7 +215,7 @@
           <div>The <span class="term" data-def="A hardship or danger that drives people away from a place.">push factor</span> Lewis describes is ___.</div>
           <div>Lewis was pushed to leave because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc2_1" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc2_1" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -224,7 +227,7 @@
           <div>In the inset circle, ___ is happening. The artist made it small because ___.</div>
           <div>Pin #1 shows ___, which the artist shrank to ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc2_2" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc2_2" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -236,7 +239,7 @@
           <div>Compared to #1, #2 is ___, which sends the message that ___.</div>
           <div>The size difference between #1 and #2 suggests ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc2_3" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc2_3" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -248,7 +251,7 @@
           <div>The burning building suggests ___.</div>
           <div>This detail might mean ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc2_4" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc2_4" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -260,7 +263,7 @@
           <div>I also notice ___, which symbolizes ___.</div>
           <div>Another detail is ___. I think it symbolizes ___ because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc2_5" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc2_5" data-doc="doc2" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -275,7 +278,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc2" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc2" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -296,7 +299,7 @@
           <div>This shows Singleton's <span class="term" data-def="The movement of people from one place to settle in another.">migration</span> was ___ because ___.</div>
           <div>Singleton's plan was ___ since he started in ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc3_1" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc3_1" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -308,7 +311,7 @@
           <div>Singleton speaks differently in Congress because ___.</div>
           <div>In front of Congress, Singleton uses ___ language instead of ___ language because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc3_2" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc3_2" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -320,7 +323,7 @@
           <div>Connecting these two sources, I notice ___.</div>
           <div>This connection reveals that Singleton justifies his <span class="term" data-def="The movement of people from one place to settle in another.">migration</span> by ___ depending on ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc3_3" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc3_3" data-doc="doc3" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -335,7 +338,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc3" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc3" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -363,7 +366,7 @@
           <div>Nicodemus's promise was/wasn't kept because ___ and ___.</div>
           <div>The <span class="term" data-def="Specific proof from a source used to support a claim.">evidence</span> shows ___, which means the promise was ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc4_1" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc4_1" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -375,7 +378,7 @@
           <div>I think Nicodemus was a ___ because ___.</div>
           <div>Nicodemus doesn't fit neatly into success or failure because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc4_2" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc4_2" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -387,7 +390,7 @@
           <div>The size of this gathering suggests ___.</div>
           <div>This photo shows ___, which tells me the community was ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc4_3" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc4_3" data-doc="doc4" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -402,7 +405,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc4" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc4" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -445,7 +448,7 @@
           <div>The <span class="term" data-def="Something that draws people toward a new place.">pull factor</span> here is ___.</div>
           <div><span class="term" data-def="Actively seeking out and persuading people to relocate for work.">Labor recruitment</span> means ___, shown by ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_1" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_1" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -457,7 +460,7 @@
           <div>This distance shows that ___.</div>
           <div>Knowing the distance was 6,900 miles makes me think ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_2" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_2" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -469,7 +472,7 @@
           <div>Columbia's hand is ___, which suggests ___.</div>
           <div>This gesture shows ___ rather than ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_3" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_3" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -481,7 +484,7 @@
           <div>Nast included so many accusations to ___.</div>
           <div>This wall of text shows ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_4" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_4" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -493,7 +496,7 @@
           <div>"<span class="term" data-def="A vote.">Ballot</span> or bullet" suggests ___.</div>
           <div>This phrase means the mob was willing to ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_5" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_5" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -505,7 +508,7 @@
           <div>Nast connects these two events to show ___.</div>
           <div>This reference suggests that ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_6" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_6" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -517,7 +520,7 @@
           <div>I also notice ___, which symbolizes ___.</div>
           <div>Another detail is ___. I think it symbolizes ___ because ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc5_7" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc5_7" data-doc="doc5" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -532,7 +535,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc5" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc5" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -553,7 +556,7 @@
           <div>The strikers demanded ___ but received ___, which is <span class="term" data-def="Unequal treatment based on group membership.">discrimination</span> because ___.</div>
           <div>This wage gap shows <span class="term" data-def="Unequal treatment based on group membership.">discrimination</span> since ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc6_1" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc6_1" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -565,7 +568,7 @@
           <div>This response shows that power was held by ___ because ___.</div>
           <div>Cutting off food instead of negotiating suggests ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc6_2" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc6_2" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -577,7 +580,7 @@
           <div>I agree/disagree that this was a failure because ___.</div>
           <div>A better way to measure success might be ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc6_3" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc6_3" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -589,7 +592,7 @@
           <div>The <span class="term" data-def="The importance or meaning of something — why it matters.">significance</span> of this choice is ___.</div>
           <div>This matters because it shows ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc6_4" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc6_4" data-doc="doc6" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -604,7 +607,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc6" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc6" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -632,7 +635,7 @@
           <div>The "Whereas" clause reflects <span class="term" data-def="The belief that immigrants threaten an established population.">nativism</span> because ___.</div>
           <div>This <span class="term" data-def="Explaining how evidence connects to and supports a claim.">reasoning</span> shows <span class="term" data-def="The belief that immigrants threaten an established population.">nativism</span> since it claims ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc7_1" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc7_1" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -644,7 +647,7 @@
           <div>The word "<span class="term" data-def="Puts at risk of harm.">endangers</span>" implies ___.</div>
           <div>This word choice suggests lawmakers believed ___ without ever proving it.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc7_2" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc7_2" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -656,7 +659,7 @@
           <div>The <span class="term" data-def="The legal process of becoming a citizen.">naturalization</span> ban adds ___ because ___.</div>
           <div>Banning <span class="term" data-def="The legal process of becoming a citizen.">naturalization</span> means ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc7_3" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc7_3" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -668,7 +671,7 @@
           <div>I've seen this in ___, where ___.</div>
           <div>Another example is ___ because similar language was used to ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc7_4" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc7_4" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
 
@@ -680,7 +683,7 @@
           <div>This suggests that ___.</div>
           <div>The gap between the law and this photo shows ___.</div>
         </div>
-        <textarea class="answer-box" id="ans_doc7_5" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..."></textarea>
+        <textarea class="answer-box" id="ans_doc7_5" data-doc="doc7" oninput="onAnswerInput()" placeholder="Type your answer..." disabled></textarea>
       </div>
     </div>
   </div>
@@ -695,7 +698,7 @@
   </div>
     <div class="accountability">
       <label>One thing your group discussed:</label>
-      <textarea class="answer-box" id="disc_doc7" oninput="onAnswerInput()" placeholder="One sentence is enough..."></textarea>
+      <textarea class="answer-box" id="disc_doc7" oninput="onAnswerInput()" placeholder="One sentence is enough..." disabled></textarea>
     </div>
   </div>
 </div>
@@ -710,17 +713,24 @@ const TOTAL_BOXES = 37;
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzIgGszHI9ehn3J7CHGzN8D9mm3eObAhC0VwpPkonz3393vOWBAtc6h-eLaYjPFKv-CYQ/exec";
 const SHARED_SECRET = "vpp-us-26-27"; // confirm this matches your deployment
 const DAY_ID = "unit3_day4_document_analysis";
+const LS_PREFIX = "day4docanalysis_";
+const SERVER_SYNC_INTERVAL = 25000; // 25s, not 4s — cuts concurrent load on a full class period
 
 let autoSaveTimer = null;
+let unlocked = false;
 
+// Normalize consistently — "AB12", "ab12", " ab12 " must all be the SAME student.
+function normalizeId(raw) {
+  return raw.trim().toUpperCase();
+}
 function getStudentId() {
-  return document.getElementById("studentId").value.trim();
+  return normalizeId(document.getElementById("studentId").value || "");
 }
 
 function checkIdEntered() {
   const hasId = getStudentId().length > 0;
   document.getElementById("loadBtn").disabled = !hasId;
-  document.getElementById("saveBtn").disabled = !hasId;
+  document.getElementById("saveBtn").disabled = !hasId || !unlocked;
 }
 
 function collectAnswers() {
@@ -729,24 +739,61 @@ function collectAnswers() {
   return answers;
 }
 
-async function callBackend(action, payload) {
-  const res = await fetch(APPS_SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify({ action, secret: SHARED_SECRET, dayId: DAY_ID, ...payload })
-  });
-  const text = await res.text();
+function setLocked(locked) {
+  unlocked = !locked;
+  document.querySelectorAll(".answer-box").forEach(box => { box.disabled = locked; });
+  document.getElementById("lockNotice").style.display = locked ? "block" : "none";
+  document.getElementById("saveBtn").disabled = locked || !getStudentId();
+}
+
+// ---- Local-first storage: every keystroke lands here immediately, no network needed ----
+function saveLocal(id, answers) {
+  const record = { answers, savedAt: Date.now() };
   try {
-    return JSON.parse(text);
+    if (id) localStorage.setItem(LS_PREFIX + id, JSON.stringify(record));
+    localStorage.setItem(LS_PREFIX + "draft", JSON.stringify(record)); // recovers even pre-ID typing
   } catch (e) {
-    throw new Error("Server did not return valid JSON (got: " + text.slice(0, 150) + "...)");
+    console.warn("localStorage save failed:", e.message);
+  }
+}
+function loadLocal(id) {
+  try {
+    const raw = localStorage.getItem(LS_PREFIX + id);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+// ---- Retry-with-backoff on every server call, text-first parse so an HTML error
+// page (Apps Script's failure mode under load) doesn't get misread as "offline" ----
+async function callBackend(action, payload, attempt) {
+  attempt = attempt || 1;
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify({ action, secret: SHARED_SECRET, dayId: DAY_ID, ...payload })
+    });
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      throw new Error("Server did not return valid JSON (got: " + text.slice(0, 150) + "...)");
+    }
+  } catch (err) {
+    if (attempt < 3) {
+      await new Promise(r => setTimeout(r, attempt * 1500)); // 1.5s, then 3s
+      return callBackend(action, payload, attempt + 1);
+    }
+    throw err;
   }
 }
 
 function showSaveError(message) {
   const box = document.createElement("div");
   box.className = "feedback-box";
-  box.innerHTML = "<strong>Save/Load problem:</strong> " + message +
-    "<br>Your answers are still in the page — use Save as PDF as a backup, then try Save Progress again.";
+  box.innerHTML = "<strong>Server sync problem:</strong> " + message +
+    "<br>Your work is still saved on THIS device (localStorage) and in the PDF export — nothing is lost. It will keep retrying in the background.";
   const existing = document.querySelector(".feedback-box");
   if (existing) existing.remove();
   document.querySelector(".name-block").insertAdjacentElement("afterend", box);
@@ -755,12 +802,14 @@ function showSaveError(message) {
 async function saveProgress(silent) {
   const id = getStudentId();
   if (!id) return;
-  document.getElementById("saveStatus").textContent = "Saving...";
+  const answers = collectAnswers();
+  saveLocal(id, answers); // local save is instant and never fails silently
+  document.getElementById("saveStatus").textContent = "Saved on this device — syncing to server...";
   try {
-    await callBackend("save_state", { studentId: id, answers: collectAnswers() });
-    document.getElementById("saveStatus").textContent = "Saved " + new Date().toLocaleTimeString();
+    await callBackend("save_state", { studentId: id, answers, savedAt: Date.now() });
+    document.getElementById("saveStatus").textContent = "Synced to server " + new Date().toLocaleTimeString();
   } catch (e) {
-    document.getElementById("saveStatus").textContent = "Not saved";
+    document.getElementById("saveStatus").textContent = "Saved on this device only — will retry (server unreachable)";
     if (!silent) showSaveError(e.message);
   }
 }
@@ -769,29 +818,56 @@ async function loadPreviousWork() {
   const id = getStudentId();
   if (!id) return;
   document.getElementById("saveStatus").textContent = "Loading...";
+
+  const local = loadLocal(id);
+  let serverData = null;
+  let serverFailed = false;
   try {
     const data = await callBackend("load_state", { studentId: id });
-    if (data && data.found && data.answers) {
-      Object.keys(data.answers).forEach(key => {
-        const box = document.getElementById(key);
-        if (box) box.value = data.answers[key];
-      });
-      updateProgress();
-      document.getElementById("saveStatus").textContent = "Previous work loaded.";
-    } else {
-      document.getElementById("saveStatus").textContent = "No previous work found — starting fresh.";
-    }
+    if (data && data.found && data.answers) serverData = data;
   } catch (e) {
-    document.getElementById("saveStatus").textContent = "";
-    showSaveError(e.message);
+    serverFailed = true;
   }
+
+  // Version stamps: whichever copy is actually newer wins, local or server.
+  let chosen = null;
+  if (local && serverData) {
+    chosen = (local.savedAt >= (serverData.savedAt || 0)) ? local : { answers: serverData.answers, savedAt: serverData.savedAt };
+  } else if (local) {
+    chosen = local;
+  } else if (serverData) {
+    chosen = { answers: serverData.answers, savedAt: serverData.savedAt };
+  }
+
+  if (chosen) {
+    Object.keys(chosen.answers).forEach(key => {
+      const box = document.getElementById(key);
+      if (box) box.value = chosen.answers[key];
+    });
+    updateProgress();
+    document.getElementById("saveStatus").textContent = "Previous work loaded" + (serverFailed ? " (from this device — server unreachable, will sync later)." : ".");
+  } else {
+    document.getElementById("saveStatus").textContent = serverFailed
+      ? "No local copy found, and server is unreachable right now — starting fresh. Try Load again shortly to check the server."
+      : "No previous work found — starting fresh.";
+  }
+  setLocked(false); // Load-before-edit: boxes only unlock after a load attempt completes, found or not
 }
 
 function onAnswerInput() {
   updateProgress();
+  const id = getStudentId();
+  saveLocal(id, collectAnswers()); // instant, local, every keystroke
   if (autoSaveTimer) clearTimeout(autoSaveTimer);
-  autoSaveTimer = setTimeout(() => { if (getStudentId()) saveProgress(true); }, 3000);
+  autoSaveTimer = setTimeout(() => { if (getStudentId()) saveProgress(true); }, SERVER_SYNC_INTERVAL);
 }
+
+// Save-on-blur: sync sooner than the 25s timer when a student actually finishes a box
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".answer-box").forEach(box => {
+    box.addEventListener("blur", () => { if (getStudentId() && unlocked) saveProgress(true); });
+  });
+});
 
 function updateProgress() {
   const boxes = document.querySelectorAll(".answer-box");
@@ -847,6 +923,7 @@ function saveToPDF() {
 }
 
 updateProgress();
+setLocked(true); // start locked — Load-before-edit
 
 window.addEventListener("beforeunload", function (e) {
   const hasContent = Array.from(document.querySelectorAll(".answer-box")).some(b => b.value.trim().length > 0);
