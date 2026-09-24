@@ -98,18 +98,18 @@
 <div class="subtitle">Exodusters &amp; Chinese Railroad Workers — Unit 3, Day 4</div>
 
 <div class="top-note">
-  <strong>Enter your Student ID and click Load first</strong> — the writing boxes stay locked until you do, so your work can't be accidentally overwritten. After that, your work saves to this browser instantly and syncs to the server in the background.<br><br>
+  <strong>Create a random username — do NOT use your real name or your student ID number.</strong> Something no one could guess (like "BlueFox42" or "Cactus77"). Remember it, then click Load first — the writing boxes stay locked until you do, so your work can't be accidentally overwritten. After that, your work saves to this browser instantly and syncs to the server in the background.<br><br>
   Hover over any <span class="term" data-def="Example: this is what a glossed word looks like — hover any underlined word for its definition.">underlined word</span>
   for a definition. On images, hover the numbered gold circles for analysis questions (answered below) and the blue "i" circles for quick facts.
 </div>
 
 <div class="name-block">
-  <label>Student ID (e.g. AB12): <input type="text" id="studentId" oninput="checkIdEntered()" placeholder="AB12"></label>
+  <label>Your made-up username (not your real name/ID): <input type="text" id="studentId" oninput="checkIdEntered()" placeholder="e.g. BlueFox42"></label>
   <button id="loadBtn" onclick="loadPreviousWork()" disabled>Load my previous work</button>
   <button id="saveBtn" onclick="saveProgress()" disabled>Save Progress</button>
   <span id="saveStatus" class="save-status"></span>
 </div>
-<div id="lockNotice" class="lock-notice">🔒 Boxes are locked. Enter your Student ID and click "Load my previous work" to unlock — even if you have nothing saved yet, this confirms your ID and starts your work correctly.</div>
+<div id="lockNotice" class="lock-notice">🔒 Boxes are locked. Enter your made-up username and click "Load my previous work" to unlock — even if you have nothing saved yet, this confirms your username and starts your work correctly.</div>
 
 <label>Completion</label>
 <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
@@ -705,7 +705,7 @@
 
 <div class="footer-note">
   <button id="pdfBtn" onclick="saveToPDF()">Save as PDF</button>
-  <p style="font-size:12px;color:#777;">Saves your name, completion percentage, and all your answers.</p>
+  <p style="font-size:12px;color:#777;">Saves your username, completion grade, and all your answers.</p>
 </div>
 
 <script>
@@ -883,13 +883,25 @@ function saveToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const pct = updateProgress();
-  const name = document.getElementById("studentId").value || "(no ID entered)";
+  const username = document.getElementById("studentId").value || "(no username entered)";
   let y = 15;
   doc.setFontSize(14);
   doc.text("Document Analysis — Whose Promise Was Kept?", 15, y); y += 8;
   doc.setFontSize(11);
-  doc.text("Name: " + name, 15, y); y += 6;
-  doc.text("Completion: " + pct + "%", 15, y); y += 10;
+  doc.text("Username: " + username, 15, y); y += 10;
+
+  // Prominent completion grade box, right at the top
+  doc.setDrawColor(46, 125, 50);
+  doc.setLineWidth(0.5);
+  doc.rect(15, y, 180, 12);
+  doc.setFontSize(16);
+  doc.setFont(undefined, "bold");
+  doc.setTextColor(46, 125, 50);
+  doc.text("Completion Grade: " + pct + "%", 20, y + 8.5);
+  doc.setFont(undefined, "normal");
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+  y += 20;
 
   document.querySelectorAll(".doc-card").forEach(card => {
     const header = card.querySelector(".doc-header").textContent;
